@@ -7,52 +7,50 @@
 	<body>
 		<script src="scripts.js"></script>
 		<div>
-			<table>
-				<tr>
-					<td>
-						Network Class
-					</td>
-					<td>
-						<form>
+			<form>
+				<table>
+					<tr>
+						<td>
+							Network Class
+						</td>
+						<td>
 							<input type="radio" name="networkClass" value="any" checked> Any &nbsp;
 							<input type="radio" name="networkClass" value="a"> A &nbsp;
 							<input type="radio" name="networkClass" value="b"> B &nbsp;
 							<input type="radio" name="networkClass" value="c"> C &nbsp;
-						</form>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Subnet
-					</td>
-					<td>
-						<div class="dropdown">
-							<button onclick="toggleShow()" class="dropbtn">Dropdown</button>
-							<div id="myDropdown" class="dropdown-content">
-								<input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-								<script>createdDropdownChoices()</script>
-							    <p>About</p>
-							    <a href="#base">Base</a>
-							    <a href="#blog">Blog</a>
-							    <a href="#contact">Contact</a>
-							    <a href="#custom">Custom</a>
-							    <a href="#support">Support</a>
-							    <a href="#tools">Tools</a>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Subnet
+						</td>
+						<td>
+							<div class="dropdown">
+								<button onclick="toggleShow()" class="dropbtn">Dropdown</button>
+								<div id="myDropdown" class="dropdown-content">
+									<input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+									<script>createdDropdownChoices()</script>
+								    <p>About</p>
+								    <a href="#base">Base</a>
+								    <a href="#blog">Blog</a>
+								    <a href="#contact">Contact</a>
+								    <a href="#custom">Custom</a>
+								    <a href="#support">Support</a>
+								    <a href="#tools">Tools</a>
+								</div>
 							</div>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						IP Address
-					</td>
-					<td>
-						<form>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							IP Address
+						</td>
+						<td>
 							<input type="text" name="ip">
-						</form>
-					</td>
-				</tr>
-			</table>
+						</td>
+					</tr>
+				</table>
+			</form>
 		</div>
 	</body>
 </html>
