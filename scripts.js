@@ -17,10 +17,48 @@ function filterFunction() {
     }
 }
 
+function frontBitToDec(bitNb) {
+	dec = 0;
+	for (j=1;j<=bitNb;j++) {
+		dec += Math.pow(2,8-j);
+	}
+	return dec;
+}
+
+function getIPfromMask(maskBit) {
+	var ipStr = "";
+	var countPrintGroup = 4;
+	while (maskBit > 0) {
+		if (maskBit > 8) {
+			ipStr += frontBitToDec(8);
+			maskBit -= 8;
+		}else{
+			ipStr += frontBitToDec(maskBit);
+			maskBit = 0;
+		}
+		countPrintGroup --;
+		if (countPrintGroup > 0) {
+			ipStr += ".";
+		}
+	}
+	while (countPrintGroup > 0) {
+		ipStr += "0";
+		if (countPrintGroup > 1) {
+			ipStr += ".";
+		}
+		countPrintGroup --;
+	}
+	return ipStr;
+}
+
 function createdDropdownChoices() {
-	var para = document.createElement("p");
-	var node = document.createTextNode("This is new.");
-	para.appendChild(node);
-	var element = document.getElementById("myDropdown");
-	element.appendChild(para);
+	for (var mask = 1; mask <= 32; mask++) {
+		var ip_text = getIPfromMask(mask);
+		console.log(ip_text);
+		var para = document.createElement("p");
+		var node = document.createTextNode(ip_text + " /" + mask);
+		para.appendChild(node);
+		var element = document.getElementById("myDropdown");
+		element.appendChild(para);
+	}
 }
