@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<script src="scripts.js"></script>
 		<link rel="stylesheet" href="styles.css">
 		<title>IP Calculator:DataCom</title>
 	</head>
 	<body>
 		<div>
-			<form>
+			<form action="javascript:submit()">
 				<table>
 					<tr>
 						<td>Network Class</td>
@@ -19,15 +20,16 @@
 					</tr>
 					<tr>
 						<td>Subnet</td>
-						<td><select id="subnet"></select></td>
+						<td><select id="subnet" name="subnet"></select></td>
 					</tr>
 					<tr>
 						<td>IP Address</td>
 						<td><input type="text" name="ip"></td>
 					</tr>
 				</table>
+					<input type="submit" value="Calculate" id='.dropbtn'>
 			</form>
 		</div>
-		<script src="scripts.js"></script>
+		<script>createdSelectChoices();</script>
 	</body>
 </html>

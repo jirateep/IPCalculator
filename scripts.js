@@ -63,4 +63,13 @@ function createdSelectChoices() {
 	}
 }
 
-createdSelectChoices();
+function submit() {
+	var netWorkClassList = document.getElementsByName("netWorkClass");
+	var netWorkClass = document.querySelector('[name="networkClass"]:checked').value;
+	var subnet = document.getElementsByName("subnet")[0].value;
+	var ip = document.getElementsByName("ip")[0].value;
+	console.log(55555);
+	console.log(netWorkClass);
+	console.log(subnet);
+	console.log(ip);
+}
