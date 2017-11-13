@@ -52,9 +52,10 @@ function getIPfromMask(maskBit) {
 }
 
 function createdSelectChoices() {
-	for (var mask = 1; mask <= 32; mask++) {
+	for (var mask = 32; mask > 0; mask--) {
 		var ip_text = getIPfromMask(mask);
 		var op = document.createElement("option");
+		op.setAttribute("value",mask);
 		var node = document.createTextNode(ip_text + " /" + mask);
 		op.appendChild(node);
 		var element = document.getElementById("subnet");
