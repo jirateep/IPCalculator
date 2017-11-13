@@ -93,6 +93,30 @@ function findNetworkClass(ip) {
 		return 'NaN';
 }
 
+function findBinaryIP(ip) {
+	var ipList = ip.split(".");
+	var binStr = "";
+	var countDot = 0;
+	for (var i = 0; i < ipList.length; i++) {
+		var tmp = parseInt(ipList[i]);
+		var nowBinStr = "";
+		tmp = parseInt(tmp);
+		while (tmp > 0) {
+			nowBinStr += tmp % 2;
+			tmp = Math.floor(tmp/2);
+		}
+		while (nowBinStr.length < 8) {
+			nowBinStr = "0" + nowBinStr;
+		}
+		binStr += nowBinStr;
+		if (countDot < 3) {
+			binStr += '.';
+			countDot += 1;
+		}
+	}
+	return binStr;
+}
+
 function submit() {
 	var networkClass = document.querySelector('[name="networkClass"]:checked').value;
 	var subnet = document.getElementsByName("subnet")[0].value;
@@ -104,7 +128,8 @@ function submit() {
 		alert("Incorrect IP pattern");
 	}else{
 		var ipNetworkClass = findNetworkClass(ip);
+		var binIP = findBinaryIP(ip);
 		console.log("ipNetworkClass : " + ipNetworkClass);
-
+		console.log("binaryIP : " + binIP);
 	}
 }
