@@ -51,16 +51,15 @@ function getIPfromMask(maskBit) {
 	return ipStr;
 }
 
-function createdDropdownChoices() {
+function createdSelectChoices() {
 	for (var mask = 1; mask <= 32; mask++) {
 		var ip_text = getIPfromMask(mask);
-		console.log(ip_text);
-		var para = document.createElement("p");
+		var op = document.createElement("option");
 		var node = document.createTextNode(ip_text + " /" + mask);
-		para.appendChild(node);
-		var element = document.getElementById("myDropdown");
-		element.appendChild(para);
+		op.appendChild(node);
+		var element = document.getElementById("subnet");
+		element.appendChild(op);
 	}
 }
 
-createdDropdownChoices();
+createdSelectChoices();
