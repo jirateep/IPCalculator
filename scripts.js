@@ -62,3 +62,5 @@ function createdDropdownChoices() {
 		element.appendChild(para);
 	}
 }
+
+createdDropdownChoices();
