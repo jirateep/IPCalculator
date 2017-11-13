@@ -77,17 +77,34 @@ function correctIPPattern(ip) {
 	return true;
 }
 
+function findNetworkClass(ip) {
+	var firstOctet = parseInt(ip.split(".")[0]);
+	if (firstOctet >= 1 && firstOctet <= 126) {
+		return 'A';
+	}else if (firstOctet >= 128 && firstOctet <= 191) {
+		return 'B';
+	}else if (firstOctet >= 192 && firstOctet <= 223) {
+		return 'C';
+	}else if (firstOctet >= 224 && firstOctet <= 239) {
+		return 'D';
+	}else if (firstOctet >= 240 && firstOctet <= 254) {
+		return 'E';
+	}else 
+		return 'NaN';
+}
+
 function submit() {
-	var netWorkClassList = document.getElementsByName("netWorkClass");
-	var netWorkClass = document.querySelector('[name="networkClass"]:checked').value;
+	var networkClass = document.querySelector('[name="networkClass"]:checked').value;
 	var subnet = document.getElementsByName("subnet")[0].value;
 	var ip = document.getElementsByName("ip")[0].value;
-	console.log(netWorkClass);
-	console.log(subnet);
-	console.log(ip);
+	console.log("networkClass : " + networkClass);
+	console.log("subnet : " + subnet);
+	console.log("ip : " + ip);
 	if (!correctIPPattern(ip)) {
-		alert("Incorrect IP pattern W.X.Y.Z which 0 <= X,X,Y,Z <= 255");
+		alert("Incorrect IP pattern");
 	}else{
-		console.log("pass");
+		var ipNetworkClass = findNetworkClass(ip);
+		console.log("ipNetworkClass : " + ipNetworkClass);
+
 	}
 }
