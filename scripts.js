@@ -63,13 +63,33 @@ function createdSelectChoices() {
 	}
 }
 
+function correctIPPattern(ip) {
+	var ip_list = ip.split(".");
+	if (ip_list.length != 4) {
+		//console.log(ip_list.length);
+		return false;
+	}
+	//console.log("pass1");
+	for (var i in ip_list) {
+		if (0 > parseInt(i) || 255 < parseInt(i)){
+			//console.log(i);
+			return false;
+		}
+	}
+	return true;
+}
+
 function submit() {
 	var netWorkClassList = document.getElementsByName("netWorkClass");
 	var netWorkClass = document.querySelector('[name="networkClass"]:checked').value;
 	var subnet = document.getElementsByName("subnet")[0].value;
 	var ip = document.getElementsByName("ip")[0].value;
-	console.log(55555);
 	console.log(netWorkClass);
 	console.log(subnet);
 	console.log(ip);
+	if (!correctIPPattern(ip)) {
+		alert("Incorrect IP pattern W.X.Y.Z which 0 <= X,X,Y,Z <= 255");
+	}else{
+		console.log("pass");
+	}
 }
