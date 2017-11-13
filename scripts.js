@@ -64,15 +64,13 @@ function createdSelectChoices() {
 }
 
 function correctIPPattern(ip) {
-	var ip_list = ip.split(".");
-	if (ip_list.length != 4) {
-		//console.log(ip_list.length);
+	var ipList = ip.split(".");
+	if (ipList.length != 4) {
 		return false;
 	}
-	//console.log("pass1");
-	for (var i in ip_list) {
-		if (0 > parseInt(i) || 255 < parseInt(i)){
-			//console.log(i);
+	for (var i in ipList) {
+		var iInt = parseInt(i);
+		if (0 > iInt || 255 < iInt){
 			return false;
 		}
 	}
