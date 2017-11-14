@@ -252,6 +252,8 @@ function submit() {
 		var broadcastAddr = plusIP(networkAddr,nbHosts-1);
 		var usableRange = plusIP(networkAddr,1) + " - " + minusIP(broadcastAddr,1);
 		var ipType = findType(ip);
+		var binID = binIP.split(".").join("");
+		var decID = binToDec(binID);
 
 		console.log("IP Address: " + ip);
 		console.log("Network Address: " + networkAddr);
@@ -266,5 +268,7 @@ function submit() {
 		console.log("CIDR Notation: " + CIDR);
 		console.log("IP Type: " + ipType);
 		console.log("Short: " + short);
+		console.log("Binary ID: " + binID);
+		console.log("integer ID: " + decID);
 	}
 }
