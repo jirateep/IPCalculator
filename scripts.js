@@ -273,6 +273,30 @@ function findStartIP(ip, subnet, ch) {
 	return newIP;
 }
 
+function showResultRange(ip, subnet, CIDR, nbHosts) {
+	var startIP = findStartIP(ip,subnet,"0");
+	var startStarIP = findStartIP(ip,subnet,"*");
+	var stopIP = plusIP(findStartIP(ip,subnet,"255"),1);
+	// console.log(startIP);
+	
+	if (startIP != "") {
+		//console.log("All Possible " + CIDR + " Networks" + startStarIP);
+		var element = document.getElementById("resultRange");
+		var head = document.createElement("h1");
+		var textHead = document.createTextNode("All Possible " + CIDR + " Networks" + startStarIP);
+		head.appendChild(textHead);
+		element.appendChild(head);
+		while(startIP != stopIP) {
+			var nextTonetworkIP = plusIP(startIP, 1);
+			var beforeBroadcastIP = plusIP(startIP, nbHosts-2);
+			var broadcastIP = plusIP(beforeBroadcastIP, 1);
+			console.log(startIP + " " + nextTonetworkIP + " " + beforeBroadcastIP + " " + broadcastIP);
+			
+			startIP = plusIP(broadcastIP,1);
+		}
+	}
+}
+
 function submit() {
 	var networkClass = document.querySelector('[name="networkClass"]:checked').value;
 	var subnet = document.getElementsByName("subnet")[0].value;
@@ -343,20 +367,5 @@ function submit() {
 		}
 		element.appendChild(table);
 	}
-
-	var startIP = findStartIP(ip,subnet,"0");
-	var startStarIP = findStartIP(ip,subnet,"*");
-	var stopIP = plusIP(findStartIP(ip,subnet,"255"),1);
-	// console.log(startIP);
-	
-	if (startIP != "") {
-		console.log("All Possible " + CIDR + " Networks" + startStarIP);
-		while(startIP != stopIP) {
-			var nextTonetworkIP = plusIP(startIP, 1);
-			var beforeBroadcastIP = plusIP(startIP, nbHosts-2);
-			var broadcastIP = plusIP(beforeBroadcastIP, 1);
-			console.log(startIP + " " + nextTonetworkIP + " " + beforeBroadcastIP + " " + broadcastIP);
-			startIP = plusIP(broadcastIP,1);
-		}
-	}
+	showResultRange(ip, subnet, CIDR, nbHosts);
 }
