@@ -249,6 +249,30 @@ function findUsableRange(networkAddr, broadcastAddr, usableRange) {
 	return plusIP(networkAddr,1) + " - " + minusIP(broadcastAddr,1);
 }
 
+function findStartIP(ip, subnet, ch) {
+	if (subnet == 32 || subnet == 24 || subnet == 16 || subnet == 8){
+		return "";
+	}
+	ipList = ip.split(".");
+	if (subnet < 32) {
+		ipList[3] = ch;
+	}
+	if (subnet < 24) {
+		ipList[2] = ch;
+	}
+	if (subnet < 16) {
+		ipList[1] = ch;
+	}
+	if (subnet < 8) {
+		ipList[0] = ch;
+	}
+	var newIP = ipList.join(".");
+	if (newIP == "*.*.*.*"){
+		return "";
+	}
+	return newIP;
+}
+
 function submit() {
 	var networkClass = document.querySelector('[name="networkClass"]:checked').value;
 	var subnet = document.getElementsByName("subnet")[0].value;
@@ -318,5 +342,21 @@ function submit() {
 			table.appendChild(tr);
 		}
 		element.appendChild(table);
+	}
+
+	var startIP = findStartIP(ip,subnet,"0");
+	var startStarIP = findStartIP(ip,subnet,"*");
+	var stopIP = plusIP(findStartIP(ip,subnet,"255"),1);
+	// console.log(startIP);
+	
+	if (startIP != "") {
+		console.log("All Possible " + CIDR + " Networks" + startStarIP);
+		while(startIP != stopIP) {
+			var nextTonetworkIP = plusIP(startIP, 1);
+			var beforeBroadcastIP = plusIP(startIP, nbHosts-2);
+			var broadcastIP = plusIP(beforeBroadcastIP, 1);
+			console.log(startIP + " " + nextTonetworkIP + " " + beforeBroadcastIP + " " + broadcastIP);
+			startIP = plusIP(broadcastIP,1);
+		}
 	}
 }
