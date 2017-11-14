@@ -239,7 +239,7 @@ function decToHex(ip) {
 		}
 		ip = Math.floor(ip / 16);
 	}
-	return "0x" + hex;
+	return hex;
 }
 
 function submit() {
@@ -269,7 +269,10 @@ function submit() {
 		var ipType = findType(ip);
 		var binID = binIP.split(".").join("");
 		var decID = binToDec(binID);
-		var hexID = decToHex(decID);
+		var hexIP = decToHex(decID);
+		var hexID = "0x" + hexIP;
+		var inAddr = ip.split(".").reverse().join(".") + ".in-addr.arpa";
+		var ipv4map = "::ffff:" + hexIP;
 
 		console.log("IP Address: " + ip);
 		console.log("Network Address: " + networkAddr);
@@ -287,5 +290,7 @@ function submit() {
 		console.log("Binary ID: " + binID);
 		console.log("integer ID: " + decID);
 		console.log("Hex ID: " + hexID);
+		console.log("in-addr.arpa: " + inAddr);
+		console.log("IPv4 Mapped Address: " + ipv4map);
 	}
 }
