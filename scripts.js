@@ -274,23 +274,42 @@ function submit() {
 		var inAddr = ip.split(".").reverse().join(".") + ".in-addr.arpa";
 		var ipv4map = "::ffff:" + hexIP;
 
-		console.log("IP Address: " + ip);
-		console.log("Network Address: " + networkAddr);
-		console.log("Usable Host IP Range: " + usableRange);
-		console.log("Broadcast Address: " + broadcastAddr);
-		console.log("Total Number of Hosts: " + nbHosts);
-		console.log("Number of Usable Hosts: " + nbUsable);
-		console.log("Subnet Mask: " + subnetMask);
-		console.log("Wildcard Mask: " + wildcardIP);
-		console.log("Binary Subnet Mask: " + binSubnetMask);
-		console.log("IP Class: " + ipClass);
-		console.log("CIDR Notation: " + CIDR);
-		console.log("IP Type: " + ipType);
-		console.log("Short: " + short);
-		console.log("Binary ID: " + binID);
-		console.log("integer ID: " + decID);
-		console.log("Hex ID: " + hexID);
-		console.log("in-addr.arpa: " + inAddr);
-		console.log("IPv4 Mapped Address: " + ipv4map);
+		resultHeadList = ["IP Address: ", "Network Address: ", "Usable Host IP Range: ", "Broadcast Address: ", "Total Number of Hosts: ", "Number of Usable Hosts: ", "Subnet Mask: ", "Wildcard Mask: ", "Binary Subnet Mask: ", "IP Class: ", "CIDR Notation: ", "IP Type: ", "Short: ", "Binary ID: ", "integer ID: ", "Hex ID: ", "in-addr.arpa: ", "IPv4 Mapped Address: "]
+		resultList = [ip, networkAddr, usableRange, broadcastAddr, nbHosts, nbUsable, subnetMask, wildcardIP, binSubnetMask, ipClass, CIDR, ipType, short, binID, decID, hexID, inAddr, ipv4map]
+		
+		// console.log("IP Address: " + ip);
+		// console.log("Network Address: " + networkAddr);
+		// console.log("Usable Host IP Range: " + usableRange);
+		// console.log("Broadcast Address: " + broadcastAddr);
+		// console.log("Total Number of Hosts: " + nbHosts);
+		// console.log("Number of Usable Hosts: " + nbUsable);
+		// console.log("Subnet Mask: " + subnetMask);
+		// console.log("Wildcard Mask: " + wildcardIP);
+		// console.log("Binary Subnet Mask: " + binSubnetMask);
+		// console.log("IP Class: " + ipClass);
+		// console.log("CIDR Notation: " + CIDR);
+		// console.log("IP Type: " + ipType);
+		// console.log("Short: " + short);
+		// console.log("Binary ID: " + binID);
+		// console.log("integer ID: " + decID);
+		// console.log("Hex ID: " + hexID);
+		// console.log("in-addr.arpa: " + inAddr);
+		// console.log("IPv4 Mapped Address: " + ipv4map);
+		var element = document.getElementById("result");
+		element.innerHTML = "";
+		var table = document.createElement("table");
+		for (var i in resultList) {
+			var tr = document.createElement("tr");
+			var tdHead = document.createElement("td");
+			var tdRes = document.createElement("td");
+			var textHead = document.createTextNode(resultHeadList[i]);
+			tdHead.appendChild(textHead);
+			var textRes = document.createTextNode(resultList[i]);
+			tdHead.appendChild(textRes);
+			tr.appendChild(tdHead);
+			tr.appendChild(tdRes);
+			table.appendChild(tr);
+		}
+		element.appendChild(table);
 	}
 }
