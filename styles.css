@@ -5,9 +5,10 @@
     width: 100%;
 }
 
-#resultRange td, #resultRange th, #result td {
+#resultRange td, #resultRange th, #result td, #result th {
     border: 1px solid #ddd;
     padding: 2px;
+    text-align: left;
 }
 
 #resultRange tr:nth-child(even), #result tr:nth-child(even){background-color: #f2f2f2;}
@@ -17,7 +18,7 @@
 #resultRange th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
+    text-align: center;
     background-color: #2196F3;
     color: white;
 }
