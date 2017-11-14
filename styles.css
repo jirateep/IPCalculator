@@ -1,17 +1,17 @@
-#resultRange {
+#resultRange, #result {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
 
-#resultRange td, #resultRange th {
+#resultRange td, #resultRange th, #result td {
     border: 1px solid #ddd;
     padding: 8px;
 }
 
-#resultRange tr:nth-child(even){background-color: #f2f2f2;}
+#resultRange tr:nth-child(even), #result tr:nth-child(even){background-color: #f2f2f2;}
 
-#resultRange tr:hover {background-color: #ddd;}
+#resultRange tr:hover, #result tr:hover {background-color: #ddd;}
 
 #resultRange th {
     padding-top: 12px;
