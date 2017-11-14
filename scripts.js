@@ -295,6 +295,7 @@ function showResultRange(ip, subnet, CIDR, nbHosts) {
 	if (startIP != "") {
 		//console.log("All Possible " + CIDR + " Networks" + startStarIP);
 		var element = document.getElementById("resultRange");
+		element.innerHTML = "";
 		var head = document.createElement("h2");
 		var textHead = document.createTextNode("All Possible " + CIDR + " Networks" + startStarIP);
 		head.appendChild(textHead);
