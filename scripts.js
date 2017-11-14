@@ -242,6 +242,13 @@ function decToHex(ip) {
 	return hex;
 }
 
+function findUsableRange(networkAddr, broadcastAddr, usableRange) {
+	if (usableRange <= 2) {
+		return "NA";
+	}
+	return plusIP(networkAddr,1) + " - " + minusIP(broadcastAddr,1);
+}
+
 function submit() {
 	var networkClass = document.querySelector('[name="networkClass"]:checked').value;
 	var subnet = document.getElementsByName("subnet")[0].value;
@@ -265,7 +272,7 @@ function submit() {
 		var nbUsable = findNbUsable(nbHosts);
 		var short = ip + "/" + subnet;
 		var broadcastAddr = plusIP(networkAddr,nbHosts-1);
-		var usableRange = plusIP(networkAddr,1) + " - " + minusIP(broadcastAddr,1);
+		var usableRange = findUsableRange(networkAddr, broadcastAddr, nbUsable);
 		var ipType = findType(ip);
 		var binID = binIP.split(".").join("");
 		var decID = binToDec(binID);
