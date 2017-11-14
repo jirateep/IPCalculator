@@ -287,20 +287,20 @@ function showResultRange(ip, subnet, CIDR, nbHosts) {
 		head.appendChild(textHead);
 		element.appendChild(head);
 		var table = document.createElement("table");
-		var th = document.createElement("th");
-		var tdHeadNetwork = document.createElement("td");
-		var tdHeadRange = document.createElement("td");
-		var tdHeadBoardcast = document.createElement("td");
+		var trHead = document.createElement("tr");
+		var thHeadNetwork = document.createElement("th");
+		var thHeadRange = document.createElement("th");
+		var thHeadBoardcast = document.createElement("th");
 		var textHeadNetwork = document.createTextNode("Network Address");
 		var textHeadRange = document.createTextNode("Usable Host Range");
 		var textHeadBroadcast = document.createTextNode("Broadcast Address");
-		tdHeadNetwork.appendChild(textHeadNetwork);
-		tdHeadRange.appendChild(textHeadRange);
-		tdHeadBoardcast.appendChild(textHeadBroadcast);
-		th.appendChild(tdHeadNetwork);
-		th.appendChild(tdHeadRange);
-		th.appendChild(tdHeadBoardcast);
-		table.appendChild(th);
+		thHeadNetwork.appendChild(textHeadNetwork);
+		thHeadRange.appendChild(textHeadRange);
+		thHeadBoardcast.appendChild(textHeadBroadcast);
+		trHead.appendChild(thHeadNetwork);
+		trHead.appendChild(thHeadRange);
+		trHead.appendChild(thHeadBoardcast);
+		table.appendChild(trHead);
 
 		while(startIP != stopIP) {
 			var nextTonetworkIP = plusIP(startIP, 1);

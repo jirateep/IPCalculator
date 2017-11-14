@@ -1,16 +1,22 @@
-table {
+#resultRange {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
 
-th, td {
-    text-align: left;
+#resultRange td, #resultRange th {
+    border: 1px solid #ddd;
     padding: 8px;
 }
 
-tr:nth-child(even){background-color: #f2f2f2}
+#resultRange tr:nth-child(even){background-color: #f2f2f2;}
 
-th {
+#resultRange tr:hover {background-color: #ddd;}
+
+#resultRange th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
     background-color: #4CAF50;
     color: white;
 }
