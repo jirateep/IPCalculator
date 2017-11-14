@@ -57,8 +57,7 @@
 }
 .right-panel
 {        
-    background-color:Gray;
-    width:90%;
-    height:100px;
-    float:right;
+    left: 150%;
+    margin-top: 120px;  
 }
+
