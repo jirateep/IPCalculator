@@ -147,6 +147,22 @@ function findDecIP(ip) {
 	return decIP;
 }
 
+function plusIP(ip,value) {
+	ipList = ip.split(".");
+	for (var i in ipList) {
+		ipList[i] = parseInt(ipList[i]);
+	}
+	for (var i = ipList.length -1; i >= 0; i--) {
+		ipList[i] += value;
+		if (ipList[i] > 255) {
+			value = ipList[i] - 255;
+		} else {
+			break;
+		}
+	}
+	return ipList.join(".");
+}
+
 function findNetworkAddress(binIP, binSubnetMask) {
 	var networkAddr = "";
 	for (var i = 0; i < binIP.length; i++) {
@@ -182,9 +198,11 @@ function submit() {
 		var nbHosts = Math.pow(2,32-subnet);
 		var nbUsable = findNbUsable(nbHosts);
 		var short = ip + "/" + subnet;
+		var broadcastAddr = plusIP(networkAddr,nbHosts-1);
 
 		console.log("IP Address: " + ip);
 		console.log("Network Address: " + networkAddr);
+		console.log("Broadcast Address: " + broadcastAddr);
 		console.log("Total Number of Hosts: " + nbHosts);
 		console.log("Number of Usable Hosts: " + nbUsable);
 		console.log("Subnet Mask: " + subnetMask);
