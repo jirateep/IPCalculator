@@ -79,7 +79,7 @@ function correctIPPattern(ip) {
 
 function findNetworkClass(ip) {
 	var firstOctet = parseInt(ip.split(".")[0]);
-	if (firstOctet >= 1 && firstOctet <= 126) {
+	if (firstOctet >= 1 && firstOctet <= 127) {
 		return 'A';
 	}else if (firstOctet >= 128 && firstOctet <= 191) {
 		return 'B';
@@ -273,6 +273,19 @@ function findStartIP(ip, subnet, ch) {
 	return newIP;
 }
 
+function findClassFromMask(subnet) {
+	if (subnet >= 24) {
+		return "C";
+	}
+	if (subnet >= 16) {
+		return "B";
+	}
+	if (subnet >= 8) {
+		return "A";
+	}
+	return "";
+}
+
 function showResultRange(ip, subnet, CIDR, nbHosts) {
 	var startIP = findStartIP(ip,subnet,"0");
 	var startStarIP = findStartIP(ip,subnet,"*");
@@ -339,7 +352,8 @@ function submit() {
 	if (!correctIPPattern(ip)) {
 		alert("Incorrect IP pattern");
 	}else{
-		var ipClass = findNetworkClass(ip);
+		// var ipClass = findNetworkClass(ip);
+		var ipClass = findClassFromMask(subnet);
 		var binIP = findBinaryIP(ip);
 		var subnetMask = getIPfromMask(subnet);
 		var binIP = findBinaryIP(ip);
@@ -386,16 +400,18 @@ function submit() {
 		element.innerHTML = "";
 		var table = document.createElement("table");
 		for (var i in resultList) {
-			var tr = document.createElement("tr");
-			var tdHead = document.createElement("th");
-			var tdRes = document.createElement("td");
-			var textHead = document.createTextNode(resultHeadList[i]);
-			tdHead.appendChild(textHead);
-			var textRes = document.createTextNode(resultList[i]);
-			tdRes.appendChild(textRes);
-			tr.appendChild(tdHead);
-			tr.appendChild(tdRes);
-			table.appendChild(tr);
+			if (resultList[i] != "") {
+				var tr = document.createElement("tr");
+				var tdHead = document.createElement("th");
+				var tdRes = document.createElement("td");
+				var textHead = document.createTextNode(resultHeadList[i]);
+				tdHead.appendChild(textHead);
+				var textRes = document.createTextNode(resultList[i]);
+				tdRes.appendChild(textRes);
+				tr.appendChild(tdHead);
+				tr.appendChild(tdRes);
+				table.appendChild(tr);
+			}
 		}
 		element.appendChild(table);
 	}
