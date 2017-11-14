@@ -374,8 +374,8 @@ function submit() {
 		var hexIP = decToHex(decID);
 		var hexID = "0x" + hexIP;
 		var inAddr = ip.split(".").reverse().join(".") + ".in-addr.arpa";
-		var ipv4map = "::ffff:" + hexIP;
-
+		// var ipv4map = "::ffff:" + hexIP;
+		var ipv4map = "";
 		resultHeadList = ["IP Address: ", "Network Address: ", "Usable Host IP Range: ", "Broadcast Address: ", "Total Number of Hosts: ", "Number of Usable Hosts: ", "Subnet Mask: ", "Wildcard Mask: ", "Binary Subnet Mask: ", "IP Class: ", "CIDR Notation: ", "IP Type: ", "Short: ", "Binary ID: ", "integer ID: ", "Hex ID: ", "in-addr.arpa: ", "IPv4 Mapped Address: "]
 		resultList = [ip, networkAddr, usableRange, broadcastAddr, nbHosts, nbUsable, subnetMask, wildcardIP, binSubnetMask, ipClass, CIDR, ipType, short, binID, decID, hexID, inAddr, ipv4map]
 		
