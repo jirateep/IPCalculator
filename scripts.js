@@ -243,7 +243,7 @@ function decToHex(ip) {
 }
 
 function findUsableRange(networkAddr, broadcastAddr, usableRange) {
-	if (usableRange <= 2) {
+	if (usableRange == 0) {
 		return "NA";
 	}
 	return plusIP(networkAddr,1) + " - " + minusIP(broadcastAddr,1);
