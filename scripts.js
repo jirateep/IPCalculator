@@ -227,6 +227,21 @@ function findType(ip) {
 	return "Public";
 }
 
+function decToHex(ip) {
+	var letters = 'abcdef';
+	hex = "";
+	while(ip > 0) {
+		now = ip % 16;
+		if (now < 10) {
+			hex = now + hex;
+		} else {
+			hex = letters[now - 10] + hex;
+		}
+		ip = Math.floor(ip / 16);
+	}
+	return "0x" + hex;
+}
+
 function submit() {
 	var networkClass = document.querySelector('[name="networkClass"]:checked').value;
 	var subnet = document.getElementsByName("subnet")[0].value;
@@ -254,6 +269,7 @@ function submit() {
 		var ipType = findType(ip);
 		var binID = binIP.split(".").join("");
 		var decID = binToDec(binID);
+		var hexID = decToHex(decID);
 
 		console.log("IP Address: " + ip);
 		console.log("Network Address: " + networkAddr);
@@ -270,5 +286,6 @@ function submit() {
 		console.log("Short: " + short);
 		console.log("Binary ID: " + binID);
 		console.log("integer ID: " + decID);
+		console.log("Hex ID: " + hexID);
 	}
 }
