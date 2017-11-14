@@ -117,19 +117,38 @@ function findBinaryIP(ip) {
 	return binStr;
 }
 
+function findNbUsable(nbHost) {
+	if (nbHost < 2) {
+		return 0;
+	} else {
+		return nbHost -2;
+	}
+}
+
 function submit() {
 	var networkClass = document.querySelector('[name="networkClass"]:checked').value;
 	var subnet = document.getElementsByName("subnet")[0].value;
 	var ip = document.getElementsByName("ip")[0].value;
-	console.log("networkClass : " + networkClass);
-	console.log("subnet : " + subnet);
-	console.log("ip : " + ip);
+	//console.log("ip: " + ip);
+	//console.log("networkClass: " + networkClass);
+	//console.log("subnet: " + subnet);
 	if (!correctIPPattern(ip)) {
 		alert("Incorrect IP pattern");
 	}else{
-		var ipNetworkClass = findNetworkClass(ip);
+		var ipClass = findNetworkClass(ip);
 		var binIP = findBinaryIP(ip);
-		console.log("ipNetworkClass : " + ipNetworkClass);
-		console.log("binaryIP : " + binIP);
+		var subnetMask = getIPfromMask(subnet);
+		var CIDR = "/" + subnet;
+		var nbHosts = Math.pow(2,32-subnet);
+		var nbUsable = findNbUsable(nbHosts);
+
+
+		console.log("ip: " + ip);
+		console.log("nbHosts: " + nbHosts);
+		console.log("nbUsable: " + nbUsable);
+		console.log("subnetMask: " + subnetMask)
+		console.log("binaryIP: " + binIP);
+		console.log("ipClass: " + ipClass);
+		console.log("CIDR Notation: " + CIDR);
 	}
 }
