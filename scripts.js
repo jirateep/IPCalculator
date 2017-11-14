@@ -155,7 +155,25 @@ function plusIP(ip,value) {
 	for (var i = ipList.length -1; i >= 0; i--) {
 		ipList[i] += value;
 		if (ipList[i] > 255) {
-			value = ipList[i] - 255;
+			value = Math.floor(ipList[i] / 256);
+			ipList[i] = ipList[i] % 256;
+		} else {
+			break;
+		}
+	}
+	return ipList.join(".");
+}
+
+function minusIP(ip,value) {
+	ipList = ip.split(".");
+	for (var i in ipList) {
+		ipList[i] = parseInt(ipList[i]);
+	}
+	for (var i = ipList.length -1; i >= 0; i--) {
+		ipList[i] -= value;
+		if (ipList[i] < 0) {
+			value = Math.ceiling(Math.abs(ipList[i]) / 256);
+			ipList[i] = value*256 + ipList[i];
 		} else {
 			break;
 		}
@@ -178,6 +196,37 @@ function findNetworkAddress(binIP, binSubnetMask) {
 	return networkAddr;
 }
 
+function invertIP(ip) {
+	inIP = "";
+	for (var i in ip) {
+		if (ip[i] == "1") {
+			inIP += "0";
+		} else if (ip[i] == "0") {
+			inIP += "1";
+		} else {
+			inIP += ip[i];
+		}
+	}
+	return inIP;
+}
+
+function findType(ip) {
+	ipList = ip.split(".");
+	for (var i in ipList) {
+		ipList[i] = parseInt(ipList[i]);
+	}
+	if (ipList[0] == 192 && ipList[1] == 168) {
+		return "Private";
+	} else if (ipList[0] == 127 && ipList[1] == 0 && ipList[2] == 0 && ipList[3] == 1) {
+		return "Private";
+	} else if (ipList[0] == 10) {
+		return "Private";
+	} else if (ipList[0] == 172 && ipList[1] >= 16 && ipList[1] <= 31) {
+		return "Private";
+	}
+	return "Public";
+}
+
 function submit() {
 	var networkClass = document.querySelector('[name="networkClass"]:checked').value;
 	var subnet = document.getElementsByName("subnet")[0].value;
@@ -193,22 +242,29 @@ function submit() {
 		var subnetMask = getIPfromMask(subnet);
 		var binIP = findBinaryIP(ip);
 		var binSubnetMask = findBinaryIP(subnetMask);
+		var binWildcardIP = invertIP(binSubnetMask);
+		var wildcardIP = findDecIP(binWildcardIP);
 		var networkAddr = findNetworkAddress(binIP, binSubnetMask);
 		var CIDR = "/" + subnet;
 		var nbHosts = Math.pow(2,32-subnet);
 		var nbUsable = findNbUsable(nbHosts);
 		var short = ip + "/" + subnet;
 		var broadcastAddr = plusIP(networkAddr,nbHosts-1);
+		var usableRange = plusIP(networkAddr,1) + " - " + minusIP(broadcastAddr,1);
+		var ipType = findType(ip);
 
 		console.log("IP Address: " + ip);
 		console.log("Network Address: " + networkAddr);
+		console.log("Usable Host IP Range: " + usableRange);
 		console.log("Broadcast Address: " + broadcastAddr);
 		console.log("Total Number of Hosts: " + nbHosts);
 		console.log("Number of Usable Hosts: " + nbUsable);
 		console.log("Subnet Mask: " + subnetMask);
+		console.log("Wildcard Mask: " + wildcardIP);
 		console.log("Binary Subnet Mask: " + binSubnetMask);
 		console.log("IP Class: " + ipClass);
 		console.log("CIDR Notation: " + CIDR);
+		console.log("IP Type: " + ipType);
 		console.log("Short: " + short);
 	}
 }
