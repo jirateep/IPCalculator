@@ -387,12 +387,12 @@ function submit() {
 		var table = document.createElement("table");
 		for (var i in resultList) {
 			var tr = document.createElement("tr");
-			var tdHead = document.createElement("td");
+			var tdHead = document.createElement("th");
 			var tdRes = document.createElement("td");
 			var textHead = document.createTextNode(resultHeadList[i]);
 			tdHead.appendChild(textHead);
 			var textRes = document.createTextNode(resultList[i]);
-			tdHead.appendChild(textRes);
+			tdRes.appendChild(textRes);
 			tr.appendChild(tdHead);
 			tr.appendChild(tdRes);
 			table.appendChild(tr);

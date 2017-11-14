@@ -1,12 +1,13 @@
 #resultRange, #result {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 14px;
     border-collapse: collapse;
     width: 100%;
 }
 
 #resultRange td, #resultRange th, #result td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 2px;
 }
 
 #resultRange tr:nth-child(even), #result tr:nth-child(even){background-color: #f2f2f2;}
@@ -50,13 +51,14 @@
 
 .left-panel
 {        
-    background-color:#ccc;
-    margin-top: 200px;     
+    position: fixed;
+    left: 2%;
+    margin-top: 120px;   
 }
 .right-panel
 {        
     background-color:Gray;
     width:90%;
     height:100px;
-    float:left;
+    float:right;
 }
