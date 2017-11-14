@@ -415,6 +415,6 @@ function submit() {
 			}
 		}
 		element.appendChild(table);
+		showResultRange(ip, subnet, CIDR, nbHosts);
 	}
-	showResultRange(ip, subnet, CIDR, nbHosts);
 }
