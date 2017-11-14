@@ -286,14 +286,46 @@ function showResultRange(ip, subnet, CIDR, nbHosts) {
 		var textHead = document.createTextNode("All Possible " + CIDR + " Networks" + startStarIP);
 		head.appendChild(textHead);
 		element.appendChild(head);
+		var table = document.createElement("table");
+		var th = document.createElement("th");
+		var tdHeadNetwork = document.createElement("td");
+		var tdHeadRange = document.createElement("td");
+		var tdHeadBoardcast = document.createElement("td");
+		var textHeadNetwork = document.createTextNode("Network Address");
+		var textHeadRange = document.createTextNode("Usable Host Range");
+		var textHeadBroadcast = document.createTextNode("Broadcast Address");
+		tdHeadNetwork.appendChild(textHeadNetwork);
+		tdHeadRange.appendChild(textHeadRange);
+		tdHeadBoardcast.appendChild(textHeadBroadcast);
+		th.appendChild(tdHeadNetwork);
+		th.appendChild(tdHeadRange);
+		th.appendChild(tdHeadBoardcast);
+		table.appendChild(th);
+
 		while(startIP != stopIP) {
 			var nextTonetworkIP = plusIP(startIP, 1);
 			var beforeBroadcastIP = plusIP(startIP, nbHosts-2);
 			var broadcastIP = plusIP(beforeBroadcastIP, 1);
-			console.log(startIP + " " + nextTonetworkIP + " " + beforeBroadcastIP + " " + broadcastIP);
+			// console.log(startIP + " " + nextTonetworkIP + " " + beforeBroadcastIP + " " + broadcastIP);
 			
+			var tr = document.createElement("tr");
+			var tdNetwork = document.createElement("td");
+			var tdRange = document.createElement("td");
+			var tdBoardcast = document.createElement("td");
+			var textNetwork = document.createTextNode(startIP);
+			var textRange = document.createTextNode(nextTonetworkIP + " - " + beforeBroadcastIP);
+			var textBroadcast = document.createTextNode(broadcastIP);
+			tdNetwork.appendChild(textNetwork);
+			tdRange.appendChild(textRange);
+			tdBoardcast.appendChild(textBroadcast);
+			tr.appendChild(tdNetwork);
+			tr.appendChild(tdRange);
+			tr.appendChild(tdBoardcast);
+			table.appendChild(tr);
+
 			startIP = plusIP(broadcastIP,1);
 		}
+		element.appendChild(table);
 	}
 }
 
