@@ -69,8 +69,8 @@ function correctIPPattern(ip) {
 		return false;
 	}
 	for (var i in ipList) {
-		var iInt = parseInt(i);
-		if (0 > iInt && 255 < iInt){
+		var iInt = parseInt(ipList[i]);
+		if (0 > iInt || 255 < iInt){
 			return false;
 		}
 	}
