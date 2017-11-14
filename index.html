@@ -6,7 +6,8 @@
 		<title>IP Calculator:DataCom</title>
 	</head>
 	<body>
-		<div>
+		<div class="whitebg">
+		<div class="askdiv">
 			<form action="javascript:submit()">
 				<table>
 					<tr>
@@ -27,12 +28,13 @@
 						<td><input type="text" name="ip"></td>
 					</tr>
 				</table>
-					<input type="submit" value="Calculate" id='.dropbtn'>
+					<input type="submit" value="Calculate" id='.dropbtn' class='btn submit'>
 			</form>
 		</div>
+		</div>
 		<br />
-		<div id="result"></div>
-		<div id="resultRange"></div>
+		<div id="result" class="left-panel"></div>
+		<div id="resultRange" class="right-panel"></div>
 		<script>createdSelectChoices();</script>
 	</body>
 </html>

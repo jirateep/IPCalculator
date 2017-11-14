@@ -17,46 +17,46 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #4CAF50;
+    background-color: #2196F3;
     color: white;
 }
 
-.dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
+.btn {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border: none; /* Remove borders */
+    color: white; /* Add a text color */
+    padding: 10px 20px; /* Add some padding */
+    cursor: pointer; /* Add a pointer cursor on mouse-over */
+    width: 310px;
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
+.submit {background-color: #2196F3;} /* Blue */
+.submit:hover {background: #0b7dda;}
+
+.askdiv {
+    width: 310px;
+
+    position: fixed;
+    left: 50%;
+    margin-left: -155px;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+.whitebg {
+    background-color: White; 
+    height: 120px;
+    width: 100%;
+    position: fixed;
 }
 
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+.left-panel
+{        
+    background-color:#ccc;
+    margin-top: 200px;     
 }
-
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+.right-panel
+{        
+    background-color:Gray;
+    width:90%;
+    height:100px;
+    float:left;
 }
