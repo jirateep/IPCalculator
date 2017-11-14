@@ -70,7 +70,9 @@ function correctIPPattern(ip) {
 	}
 	for (var i in ipList) {
 		var iInt = parseInt(ipList[i]);
+		console.log(iInt);
 		if (0 > iInt || 255 < iInt){
+			console.log("hi");
 			return false;
 		}
 	}
