@@ -102,7 +102,7 @@ function findBinaryIP(ip) {
 		var nowBinStr = "";
 		tmp = parseInt(tmp);
 		while (tmp > 0) {
-			nowBinStr += tmp % 2;
+			nowBinStr = (tmp % 2) + nowBinStr;
 			tmp = Math.floor(tmp/2);
 		}
 		while (nowBinStr.length < 8) {
@@ -125,6 +125,43 @@ function findNbUsable(nbHost) {
 	}
 }
 
+function binToDec(bin) {
+	var dec = 0;
+	for (var i in bin) {
+		dec = dec*2 + parseInt(bin[i]);
+	}
+	return dec;
+}
+
+function findDecIP(ip) {
+	var ipList = ip.split(".");
+	var decIP = "";
+	var dotCount = 0;
+	for (var i in ipList) {
+		decIP += binToDec(ipList[i]);
+		if (dotCount < 3) {
+			decIP += ".";
+			dotCount ++;
+		}
+	}
+	return decIP;
+}
+
+function findNetworkAddress(binIP, binSubnetMask) {
+	var networkAddr = "";
+	for (var i = 0; i < binIP.length; i++) {
+		if (binIP[i] == binSubnetMask[i] && binIP[i] == ".") {
+			networkAddr += ".";
+		}else if (binSubnetMask[i] == "1") {
+			networkAddr += binIP[i];
+		}else if (binSubnetMask[i] == "0") {
+			networkAddr += "0";
+		}
+	}
+	networkAddr = findDecIP(networkAddr);
+	return networkAddr;
+}
+
 function submit() {
 	var networkClass = document.querySelector('[name="networkClass"]:checked').value;
 	var subnet = document.getElementsByName("subnet")[0].value;
@@ -138,17 +175,22 @@ function submit() {
 		var ipClass = findNetworkClass(ip);
 		var binIP = findBinaryIP(ip);
 		var subnetMask = getIPfromMask(subnet);
+		var binIP = findBinaryIP(ip);
+		var binSubnetMask = findBinaryIP(subnetMask);
+		var networkAddr = findNetworkAddress(binIP, binSubnetMask);
 		var CIDR = "/" + subnet;
 		var nbHosts = Math.pow(2,32-subnet);
 		var nbUsable = findNbUsable(nbHosts);
+		var short = ip + "/" + subnet;
 
-
-		console.log("ip: " + ip);
-		console.log("nbHosts: " + nbHosts);
-		console.log("nbUsable: " + nbUsable);
-		console.log("subnetMask: " + subnetMask)
-		console.log("binaryIP: " + binIP);
-		console.log("ipClass: " + ipClass);
+		console.log("IP Address: " + ip);
+		console.log("Network Address: " + networkAddr);
+		console.log("Total Number of Hosts: " + nbHosts);
+		console.log("Number of Usable Hosts: " + nbUsable);
+		console.log("Subnet Mask: " + subnetMask);
+		console.log("Binary Subnet Mask: " + binSubnetMask);
+		console.log("IP Class: " + ipClass);
 		console.log("CIDR Notation: " + CIDR);
+		console.log("Short: " + short);
 	}
 }
